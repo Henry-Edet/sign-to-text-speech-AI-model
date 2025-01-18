@@ -55,7 +55,7 @@ A Sign Language to Text and Speech AI Model is a system designed to translate si
 
 ## 🦾🦾 PREREQUISITES
 
-All the dependencies and required libraries are included in the file **requirements.txt** [Click Here](https://drive.google.com/file/d/10YNWv3xTxgsMRLE18pzTExG9k54rB6T8/view?usp=drive_link)
+All the dependencies and required libraries are included in the file **requirements.txt** [Click Here](requirements.txt)
 
 ## 🚀 Installation
 
