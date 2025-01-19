@@ -8,7 +8,7 @@ A Sign Language to Text and Speech AI Model is a system designed to translate si
 
 ## Data Collection and Preprocessing:
 
-### [DATASET](https://drive.google.com/drive/folders/1LnNxa0ihwnFri5c0eSAg3Byj5e6Q3GeG?usp=drive_link)
+### LINK TO DATASET USED ➡️➡️ [DATASET](https://drive.google.com/drive/folders/1LnNxa0ihwnFri5c0eSAg3Byj5e6Q3GeG?usp=drive_link)
 
 ![iloveyou](/analyse/iloveyou.jpg)
 
