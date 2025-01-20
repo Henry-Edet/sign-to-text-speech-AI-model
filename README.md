@@ -17,8 +17,6 @@ A Sign Language to Text and Speech AI Model is a system designed to translate si
 
 ## Gesture Recognition:
 
-![Demo](/analyse/capture.mp4)
-
     A computer vision model (e.g., using OpenCV or deep learning frameworks like TensorFlow or PyTorch) processes the video or image input.
     Techniques like hand tracking, keypoint detection, or pose estimation (e.g., Mediapipe) are used to identify the movement of hands, fingers, and other relevant body parts.
 
