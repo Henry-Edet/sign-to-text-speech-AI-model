@@ -5,27 +5,80 @@ import {
   TouchableOpacity,
   StyleSheet,
   SafeAreaView,
+  ActivityIndicator,
+  Alert,
 } from "react-native";
 import { Camera, useCameraDevices } from "react-native-vision-camera";
 
 const SignToTextApp = () => {
   const [permission, setPermission] = useState(null);
   const [recognizedText, setRecognizedText] = useState("");
+  const [isLoading, setIsLoading] = useState(true);
+  const [cameraType, setCameraType] = useState("back");
   const devices = useCameraDevices();
-  const device = devices.back;
+  const device = cameraType === "back" ? devices.back : devices.front;
 
+  // Check if running in Expo Go
+  const isExpoGo = Constants?.appOwnership === "expo";
+
+  // Request camera permission
   useEffect(() => {
     (async () => {
-      const newCameraPermission = await Camera.requestCameraPermission();
-      setPermission(newCameraPermission);
+      try {
+        const newCameraPermission = await Camera.requestCameraPermission();
+        setPermission(newCameraPermission);
+      } catch (error) {
+        Alert.alert("Error", "Failed to request camera permission.");
+        console.error(error);
+      } finally {
+        setIsLoading(false);
+      }
     })();
   }, []);
 
-  const handleTranslate = () => {
-    // Placeholder function to simulate translation
-    setRecognizedText("Hello, how are you?");
+  // Handle translation (placeholder for sign language recognition)
+  const handleTranslate = async () => {
+    setIsLoading(true);
+    try {
+      // Simulate API call or model processing
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+      setRecognizedText("Hello, how are you?");
+    } catch (error) {
+      Alert.alert("Error", "Failed to translate sign language.");
+      console.error(error);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
+  // Switch between front and back cameras
+  const switchCamera = () => {
+    setCameraType((prev) => (prev === "back" ? "front" : "back"));
+  };
+
+  // Show warning if running in Expo Go
+  if (isExpoGo) {
+    return (
+      <SafeAreaView style={styles.container}>
+        <Text style={styles.permissionText}>
+          This app is not supported in Expo Go. Please use a development build
+          or EAS Build.
+        </Text>
+      </SafeAreaView>
+    );
+  }
+
+  // Show loading state
+  if (isLoading) {
+    return (
+      <SafeAreaView style={styles.container}>
+        <ActivityIndicator size="large" color="#007AFF" />
+        <Text style={styles.loadingText}>Loading...</Text>
+      </SafeAreaView>
+    );
+  }
+
+  // Show permission request message
   if (permission !== "authorized") {
     return (
       <SafeAreaView style={styles.container}>
@@ -36,11 +89,14 @@ const SignToTextApp = () => {
     );
   }
 
+  // Main UI
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.cameraContainer}>
-        {device && (
+        {device ? (
           <Camera style={styles.camera} device={device} isActive={true} />
+        ) : (
+          <Text style={styles.errorText}>No camera device found.</Text>
         )}
       </View>
       <View style={styles.outputContainer}>
@@ -50,6 +106,11 @@ const SignToTextApp = () => {
       </View>
       <TouchableOpacity style={styles.button} onPress={handleTranslate}>
         <Text style={styles.buttonText}>Convert to Speech</Text>
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.switchButton} onPress={switchCamera}>
+        <Text style={styles.switchButtonText}>
+          Switch to {cameraType === "back" ? "Front" : "Back"} Camera
+        </Text>
       </TouchableOpacity>
     </SafeAreaView>
   );
@@ -101,10 +162,34 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: "bold",
   },
+  switchButton: {
+    marginTop: 10,
+    padding: 10,
+    backgroundColor: "#34C759",
+    borderRadius: 10,
+    width: "80%",
+    alignItems: "center",
+  },
+  switchButtonText: {
+    color: "#fff",
+    fontSize: 16,
+    fontWeight: "bold",
+  },
   permissionText: {
     fontSize: 16,
     color: "#333",
     textAlign: "center",
+  },
+  loadingText: {
+    marginTop: 10,
+    fontSize: 16,
+    color: "#333",
+  },
+  errorText: {
+    fontSize: 16,
+    color: "#FF3B30",
+    textAlign: "center",
+    marginTop: 20,
   },
 });
 
