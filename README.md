@@ -58,6 +58,7 @@ A Sign Language to Text and Speech AI Model is a system designed to translate si
     Speech Synthesis: To generate spoken language.
 
     Machine Learning Frameworks: TensorFlow, PyTorch, Mediapipe, etc.
+    
 
 # HOW TO IMPLEMENT THIS PROJECT
 
