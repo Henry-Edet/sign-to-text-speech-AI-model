@@ -1,26 +1,104 @@
-@import "tailwindcss";
-
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
+/* Global Styles */
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #f0f0f0;
+}
+
+.container {
+  width: 100%;
+  max-width: 600px;
+  padding: 20px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+h1 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+/* Camera Section */
+.camera-section {
+  margin-bottom: 20px;
+}
+
+.camera-feed {
+  width: 100%;
+  max-width: 400px;
+  height: auto;
+  border-radius: 10px;
+  background-color: black;
+}
+
+.camera-controls {
+  margin-top: 10px;
+}
+
+.camera-button,
+.action-button {
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+  margin: 5px;
+}
+
+.camera-button {
+  background-color: #0070f3;
+  color: white;
+}
+
+.action-button {
+  background-color: #28a745;
+  color: white;
+}
+
+.action-button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+/* Text Display Section */
+.text-section {
+  margin-top: 20px;
+}
+
+.text-section h2 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.text-section p {
+  font-size: 18px;
+  color: #333;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+  h1 {
+    font-size: 20px;
+  }
+
+  .camera-button,
+  .action-button {
+    font-size: 14px;
+    padding: 8px 16px;
+  }
+
+  .text-section h2 {
+    font-size: 18px;
+  }
+
+  .text-section p {
+    font-size: 16px;
+  }
 }
