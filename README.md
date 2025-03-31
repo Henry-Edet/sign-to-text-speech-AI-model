@@ -93,7 +93,7 @@ All the dependencies and required libraries are included in the file **requireme
 4.  Now, run the following command in your Terminal/Command Prompt to install the libraries required
     pip install -r requirements.txt
 
-## 💡 Is it Working?? //(This should be done first before creating virtual environment, locate your project directory, create virtual environment before running "code .")//
+## 💡 Is it Working?? (This should be done first before creating virtual environment, locate your project directory, create virtual environment before running "code .")
 
 1.  In terminal window run:
 
