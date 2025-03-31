@@ -1,95 +1,57 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+'use client'
 
-export default function Home() {
+import { JSX, useState } from "react";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { Settings, HelpCircle, Mic, Video, StopCircle, Save } from "lucide-react";
+
+export default function SignTranslateApp(): JSX.Element {
+  const [isTranslating, setIsTranslating] = useState<boolean>(false);
+  const [translationMode, setTranslationMode] = useState<"text" | "speech">("text");
+  const [translatedText, setTranslatedText] = useState<string>("Translated text will appear here.");
+
+  const handleTranslationToggle = (): void => setIsTranslating(!isTranslating);
+  const handleModeSwitch = (): void => setTranslationMode(translationMode === "text" ? "speech" : "text");
+
   return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol>
-          <li>
-            Get started by editing <code>app/page.tsx</code>.
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
-
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.secondary}
-          >
-            Read our docs
-          </a>
+    <div className="min-h-screen flex flex-col bg-gray-100 p-4">
+      {/* Top Bar */}
+      <div className="flex justify-between items-center bg-blue-500 text-white p-4 rounded-lg">
+        <h1 className="text-xl font-bold">SignTranslate</h1>
+        <div className="flex gap-4">
+          <Settings className="cursor-pointer" />
+          <HelpCircle className="cursor-pointer" />
         </div>
-      </main>
-      <footer className={styles.footer}>
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+      </div>
+      
+      {/* Main Content */}
+      <div className="flex flex-1 gap-4 mt-4">
+        {/* Left Side - Video Feed */}
+        <Card className={`flex-1 ${isTranslating ? "border-green-500 border-4" : ""}`}>
+          <CardContent className="h-64 flex items-center justify-center text-gray-500 text-lg">
+            {isTranslating ? <Video className="animate-pulse" size={64} /> : "Camera feed will appear here."}
+          </CardContent>
+        </Card>
+        
+        {/* Right Side - Translation Output */}
+        <Card className="flex-1">
+          <CardContent className="h-64 flex flex-col items-center justify-center text-xl">
+            <p className="mb-2">{translatedText}</p>
+            {translationMode === "speech" && <Mic className="animate-pulse" size={32} />}
+          </CardContent>
+        </Card>
+      </div>
+      
+      {/* Bottom Bar */}
+      <div className="flex justify-between items-center mt-4">
+        <Button className={isTranslating ? "bg-red-500" : "bg-green-500"} onClick={handleTranslationToggle}>
+          {isTranslating ? <StopCircle className="mr-2" /> : <Video className="mr-2" />} {isTranslating ? "Stop Translation" : "Start Translation"}
+        </Button>
+        <Button className="bg-blue-500" onClick={handleModeSwitch}>
+          {translationMode === "text" ? "Switch to Speech Mode" : "Switch to Text Mode"}
+        </Button>
+        {isTranslating && <Button className="bg-yellow-500"><Save className="mr-2" /> Save Translation</Button>}
+      </div>
     </div>
   );
 }
