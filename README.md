@@ -4,7 +4,7 @@ An AI model built to bridge the gap between the disabled community and everyone 
 
 A Sign Language to Text and Speech AI Model is a system designed to translate sign language gestures into written text or spoken words. This type of AI model is developed to help bridge the communication gap between individuals who use sign language and those who rely on spoken or written language.
 
-# How It Works🧑🏽‍💻
+# How It Works🧑🏽‍💻🧑🏽‍💻
 
 ## Data Collection and Preprocessing:
 
