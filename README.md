@@ -17,7 +17,7 @@ A Sign Language to Text and Speech AI Model is a system designed to translate si
 
 ## Gesture Recognition:
 
-![Demo](/analyse/capture.mp4)
+##    Demo
 
     A computer vision model (e.g., using OpenCV or deep learning frameworks like TensorFlow or PyTorch) processes the video or image input.
     Techniques like hand tracking, keypoint detection, or pose estimation (e.g., Mediapipe) are used to identify the movement of hands, fingers, and other relevant body parts.
@@ -106,3 +106,4 @@ All the dependencies and required libraries are included in the file **requireme
 3.  To train the model, open the [train_py](train_sign.py) file in VScode and run.
 
 4.  To detect ASL Gestures in real-time video streams run the [test.py](test.py) file.
+
