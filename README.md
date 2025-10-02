@@ -8,7 +8,7 @@ A Sign Language to Text and Speech AI Model is a system designed to translate si
 
 ## Data Collection and Preprocessing stage:
 
-### LINK TO DATASET USED ➡️➡️ [DATASET](https://drive.google.com/drive/folders/1LnNxa0ihwnFri5c0eSAg3Byj5e6Q3GeG?usp=drive_link)
+### THIS IS THE LINK TO DATASET USED ➡️➡️ [DATASET](https://drive.google.com/drive/folders/1LnNxa0ihwnFri5c0eSAg3Byj5e6Q3GeG?usp=drive_link)
 
 ![iloveyou](/analyse/iloveyou.jpg)
 
@@ -106,4 +106,5 @@ All the dependencies and required libraries are included in the file **requireme
 3.  To train the model, open the [train_py](train_sign.py) file in VScode and run.
 
 4.  To detect ASL Gestures in real-time video streams run the [test.py](test.py) file.
+
 
